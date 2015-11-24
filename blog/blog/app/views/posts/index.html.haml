@@ -1,0 +1,14 @@
+.container
+  .jumbotron
+    %table
+      %thead
+        %tr
+          %td Title
+          %td Text
+          %td State
+      %tbody
+        = @posts.each do |f|
+        %tr
+          %td = f.title
+          %td = f.text
+          %td = f.state

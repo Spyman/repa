@@ -1,20 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  it "create new post" do
+  it "open new post form" do
     get :new
     expect(response).to be_success
   end
 
-  it "read post" do
-    pending "need to create test for read post"
+  it "create new post" do
+    text_post = FactoryGirl.attributes_for(:post)
+    post :create, post: text_post
+    expect(response).to redirect_to (posts_path(assigns[:post]))
   end
 
-  it "update post" do
-    pending "need to create test for update post"
-  end
-
-  it "edit post" do
-    pending "need to create test for edit post"
+  it "show all posts" do
+    get :show
+    expect(response).to be_success
   end
 end
