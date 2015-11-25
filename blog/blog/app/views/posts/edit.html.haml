@@ -1,0 +1,16 @@
+.container
+  .jumbotron
+    %h3 Редактирование поста
+    = form_for @post, :url => {:action => 'update'} do |f|
+      %br
+      = f.label :title
+      = f.text_field :title, :class => 'form-control'
+      %br
+      = f.label :text
+      = f.text_area :text, :class => 'form-control'
+      %br
+      - @states.each do |r|
+        = f.radio_button :state, r.id
+        = f.label dom_id(r), r.name
+
+      = f.submit :class => 'btn btn-success'

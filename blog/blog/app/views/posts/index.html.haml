@@ -1,14 +1,20 @@
 .container
-  .jumbotron
-    %table
-      %thead
+  %br
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %td Title
+        %td Text
+        %td State
+        %td Delete
+    %tbody
+      - @posts.each do |f|
         %tr
-          %td Title
-          %td Text
-          %td State
-      %tbody
-        = @posts.each do |f|
-        %tr
-          %td = f.title
-          %td = f.text
-          %td = f.state
+          %td= link_to f.title, post_path(f)
+          %td= f.text
+          %td= @states[f.state].name
+          %td
+            = link_to "Remove", post_path(f), :method => :delete
+      %tr
+        %td
+          %a.btn.btn-success{:href => new_post_path} Добавить
