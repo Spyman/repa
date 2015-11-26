@@ -17,7 +17,9 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @post = Post.find params[:post_id]
     @comment = Comment.new
+    @parents = Comment.where(post_id: @post.id)
   end
 
   def destroy
@@ -27,11 +29,31 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    redirect_to(post_path(@post))
+
+    @comment = create_comment params
+    if @comment.save
+      redirect_to(post_path(@post))
+    else
+      create_forms_new @post
+    end
+
   end
 
   def comment_params
     params.require(:comment).permit(:post_id, :text)
+  end
+
+  def create_comment params
+    if !params[:comment][:reply] == true
+      parent = Comment.find params[:parent_id]
+      @comment = parent.children.build(comment_params)
+    else
+      @comment = @post.comments.new(comment_params)
+    end
+  end
+
+  def create_forms_new post
+    @parents = Comment.where(post_id: post.id)
+    render 'new'
   end
 end

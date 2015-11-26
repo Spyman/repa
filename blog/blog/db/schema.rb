@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126092957) do
+ActiveRecord::Schema.define(version: 20151126140512) do
 
   create_table "comment_hierarchies", id: false, force: :cascade do |t|
     t.integer "ancestor_id",   null: false
@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20151126092957) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id"
-    t.text     "text",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "text",                             null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "parent_id"
+    t.text     "username",   default: "anonymous", null: false
+    t.boolean  "reply",      default: false,       null: false
   end
 
   create_table "posts", force: :cascade do |t|

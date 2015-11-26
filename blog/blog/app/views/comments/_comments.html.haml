@@ -2,15 +2,15 @@
   %table.table.table-striped
     %thead
       %tr
+        %td Автор
         %td Комментарии
         %td Удалить
-        %td Добавить
       %tbody
         - @comments.each do |comment|
           %tr
             %td
+              =comment.username
+            %td
               =comment.text
             %td
               =link_to "Remove", comment_path(comment), method: :delete, class: 'btn btn-danger'
-            %td
-              .btn.btn-default Reply

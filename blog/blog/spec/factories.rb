@@ -10,6 +10,12 @@ FactoryGirl.define do
 
   factory :comment do
     post_id { create(:post).id }
+    username "Vasya"
     text "Test text"
+    reply false
+
+    factory :comment_with_parent do
+      parent_id { create(:comment).id }
+    end
   end
 end

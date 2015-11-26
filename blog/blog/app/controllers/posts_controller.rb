@@ -14,7 +14,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @states = State.all
   end
 
   def show

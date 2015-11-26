@@ -2,15 +2,13 @@
   %table.table.table-striped
     %thead
       %tr
-        %td Комментарии
-        %td Удалить
-        %td Добавить
+        %td Автор
+        %td Комментарий
       %tbody
         - @comments.each do |comment|
           %tr
             %td
               =comment.text
             %td
-              Удалить
-            %td Добавить
+              =comment.username
 
