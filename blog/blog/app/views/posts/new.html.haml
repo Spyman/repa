@@ -1,7 +1,7 @@
 .container
   .jumbotron
     %h3 Добавление поста
-    = form_for @post, :url => {:action => 'create'}, :class => 'jumbotron' do |f|
+    = form_for @post, :url => {:action => 'create'} do |f|
       %br
       = f.label :title
       = f.text_field :title, :class => 'form-control'

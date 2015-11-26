@@ -7,3 +7,11 @@
     %br
     =link_to 'Edit', edit_post_path, class: 'btn btn-success'
     =link_to 'All', posts_path, class: 'btn btn-default'
+
+  =render 'comments/comments'
+
+  =form_for [@post, @post.comments.build] do |f|
+    =f.label :text
+    =f.text_area :text, class: 'form-control'
+    %br
+    =f.submit class: 'btn btn-success'

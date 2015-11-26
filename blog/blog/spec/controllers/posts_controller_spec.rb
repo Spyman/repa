@@ -19,6 +19,7 @@ RSpec.describe PostsController, type: :controller do
 
   it "show one post" do
     text_post = FactoryGirl.create(:post)
+    FactoryGirl.create(:state)
     get :show, id: text_post.id
     expect(response).to be_success
   end
@@ -40,7 +41,6 @@ RSpec.describe PostsController, type: :controller do
     text_post = FactoryGirl.create(:post)
     prev_updated_at = text_post.updated_at
 
-    p :id => text_post.id, :post => text_post
     put :update, :id => text_post.id, :post => FactoryGirl.attributes_for(:post)
 
     text_post.reload

@@ -18,8 +18,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find params[:id]
+    id = params[:id]
+    @post = Post.find id
     @state = State.find(@post[:state]).name
+    @comments = Comment.where post_id: @post.id
   end
 
   def update
@@ -34,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if Post.find_by_id(params[:id]).destroy
+    if Post.find(params[:id]).destroy
       redirect_to posts_path
     end
   end

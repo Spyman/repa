@@ -10,7 +10,6 @@
       = f.text_area :text, :class => 'form-control'
       %br
       - @states.each do |r|
-        = f.radio_button :state, r.id
+        = radio_button :post, :state, r.id
         = f.label dom_id(r), r.name
-
       = f.submit :class => 'btn btn-success'
